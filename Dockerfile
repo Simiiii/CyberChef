@@ -29,6 +29,8 @@ RUN npm run build
 #########################################
 FROM nginxinc/nginx-unprivileged:stable-alpine@sha256:9b87ad3dd9f431c733f19dfb278c7eb3dba9dca381942c79818bb42f1a566a83 AS cyberchef
 
+COPY ./docker/csp.conf /etc/nginx/conf.d/
+
 LABEL maintainer="GCHQ <oss@gchq.gov.uk>"
 
 COPY --from=builder /app/build/prod /usr/share/nginx/html/
